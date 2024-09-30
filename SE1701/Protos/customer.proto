@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option csharp_namespace = "MyProtos";
+
+package Customers;
+
+service GrpcCustomer{
+    rpc GetAll(Empty) returns (CustomerList);
+    rpc GetCustomer(IDRequest) returns (Customer);
+    rpc AddCustomer(Customer) returns (IDResponse);
+}
+// Empty message
+message Empty{}
+
+//Customer message for returns the detail
+message Customer{
+    // number represent for the order of it
+    // 19000 - 19999 range use for register or operate the protos (dont use)
+    // 1 - 15 needs 1byte to encode, 16 - >2000 needs 2byte
+    //the number is unique
+    //just initial once
+    string id = 1;
+    string name = 2;
+    string address = 3;
+}
+
+//Contain many customers or  => ifinity customers
+message CustomerList{
+    //repeat all customer
+    repeated Customer customer = 1;
+}
+
+message IDRequest{
+    string id = 1;
+}
+
+message IDResponse{
+    string id = 1;
+}

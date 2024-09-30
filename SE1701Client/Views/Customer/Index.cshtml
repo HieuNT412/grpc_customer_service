@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    MyProtos.CustomerList data = ViewBag.data;
+}
+
+@foreach (var item in data.Customer){
+    <div>ID: @item.Id</div>
+    <div>ID: @item.Name</div>
+    <div>ID: @item.Address</div>
+}
